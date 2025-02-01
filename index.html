@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Home Bakes - Home Baker Delivery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            background-color: #ff9999;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .nav {
+            background-color: #ffcccc;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/400');
+            height: 400px;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .cake-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .cake-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cake-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cake-info {
+            padding: 1rem;
+        }
+
+        .cake-price {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .order-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Sweet Home Bakes</h1>
+        <p>Delicious homemade cakes delivered to your doorstep</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#home">Home</a>
+        <a href="#cakes">Cakes</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <div>
+            <h2>Fresh, Homemade Cakes</h2>
+            <p>Made with love by local bakers</p>
+        </div>
+    </section>
+
+    <main class="cake-grid" id="cakeContainer">
+        <!-- Cake cards will be dynamically added here -->
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Sweet Home Bakes. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample cake data
+        const cakes = [
+            {
+                name: "Chocolate Dream Cake",
+                price: 35.99,
+                description: "Rich chocolate layers with cream filling",
+                image: "/api/placeholder/400/300"
+            },
+            {
+                name: "Vanilla Bean Delight",
+                price: 32.99,
+                description: "Classic vanilla cake with buttercream frosting",
+                image: "/api/placeholder/400/300"
+            },
+            {
+                name: "Red Velvet Paradise",
+                price: 38.99,
+                description: "Smooth red velvet with cream cheese frosting",
+                image: "/api/placeholder/400/300"
+            },
+            {
+                name: "Fruit Fantasy",
+                price: 40.99,
+                description: "Fresh fruit topped cake with whipped cream",
+                image: "/api/placeholder/400/300"
+            }
+        ];
+
+        // Function to create cake cards
+        function createCakeCards() {
+            const container = document.getElementById('cakeContainer');
+            
+            cakes.forEach(cake => {
+                const card = document.createElement('div');
+                card.className = 'cake-card';
+                
+                card.innerHTML = `
+                    <img src="${cake.image}" alt="${cake.name}" class="cake-image">
+                    <div class="cake-info">
+                        <h3>${cake.name}</h3>
+                        <p>${cake.description}</p>
+                        <p class="cake-price">$${cake.price}</p>
+                        <button class="order-btn" onclick="orderCake('${cake.name}')">Order Now</button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Function to handle cake orders
+        function orderCake(cakeName) {
+            alert(`Thank you for ordering ${cakeName}! We'll contact you soon to confirm your order.`);
+        }
+
+        // Initialize the page
+        createCakeCards();
+    </script>
+</body>
+</html>
